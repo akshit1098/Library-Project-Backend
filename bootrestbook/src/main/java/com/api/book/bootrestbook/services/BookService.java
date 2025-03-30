@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 import com.api.book.bootrestbook.dao.BookRepository;
 import com.api.book.bootrestbook.entities.Book;
 
-@Component
+@Component // use component for autowired
 public class BookService {
     // we can also use the data from the database
 
