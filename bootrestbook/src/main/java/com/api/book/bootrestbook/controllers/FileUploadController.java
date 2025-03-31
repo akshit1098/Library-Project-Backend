@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.api.book.bootrestbook.helper.FileUploadHelper;
 
@@ -44,9 +45,16 @@ public class FileUploadController {
             // file upload code..
 
             boolean f = fileUploadHelper.uploadFile(file);
+            System.out.println(f);
             if(f){
-                return ResponseEntity.ok("File is successfully upoaded");
+                // return ResponseEntity.ok("File is successfully upoaded");
+
+                // cotextPath = localhost8080/image/fileName
+                System.out.println("--->reached here...");
+                return ResponseEntity.ok(ServletUriComponentsBuilder.fromCurrentContextPath().path("/image/").path(file.getOriginalFilename()).toUriString());
+                // the file will get uploaded to target folder/static/iamge
             }
+
 
         } catch(Exception e){
             e.printStackTrace();
